@@ -8,7 +8,9 @@ class TestSoundex(unittest.TestCase):
 
     def test_single_character(self):
         self.assertEqual(generate_soundex("A"), "A000")
-
+        
+    def test_single_digit(self):
+        self.assertEqual(generate_soundex("1"), "1")
     
 if __name__ == '__main__':
     unittest.main()
