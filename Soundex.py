@@ -1,32 +1,36 @@
-def get_soundex_code(c):
-    c = c.upper()
+def generate_soundex(name):
+    if not name:
+        return ""
+ 
+    soundex = []
+    name = name.upper()
+    soundex.append(name[0])
+ 
     mapping = {
-        'B': '1', 'F': '1', 'P': '1', 'V': '1',
-        'C': '2', 'G': '2', 'J': '2', 'K': '2', 'Q': '2', 'S': '2', 'X': '2', 'Z': '2',
-        'D': '3', 'T': '3',
+        'BFPV': '1',
+        'CGJKQSXZ': '2',
+        'DT': '3',
         'L': '4',
-        'M': '5', 'N': '5',
+        'MN': '5',
         'R': '6'
     }
-    return mapping.get(c, '0')  # Default to '0' for non-mapped characters
-
-
-def generate_soundex(name):
- if not name:
-       return ""
-
-  else:     
-     # Start with the first letter (capitalized)
-     soundex = name[0].upper()
-     prev_code = get_soundex_code(soundex) 
-     for char in name[1:4]:
-         code = get_soundex_code(char)
-         if code != '0' and code != prev_code:
-             soundex += code
-             prev_code = code
-
-
-    # Pad with zeros if necessary
-    soundex = soundex.ljust(4, '0')
-
-    return soundex
+ 
+    prev_code = mapping.get(name[0], '0')
+ 
+    for char in name[1:]:
+        for key in mapping:
+            if char in key:
+                code = mapping[key]
+                if code != '0' and code != prev_code:
+                    soundex.append(code)
+                    prev_code = code
+                break
+        else:
+            prev_code = '0'
+ 
+        if len(soundex) == 4:
+            break
+ 
+    soundex.extend(['0'] * (4 - len(soundex)))
+ 
+    return ''.join(soundex[:4])
