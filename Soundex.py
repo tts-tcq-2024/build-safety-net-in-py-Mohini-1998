@@ -9,7 +9,7 @@ def get_soundex_code(c):
         'R': '6'
     }
     return mapping.get(c,'0')  # Default to '0' for non-mapped characters
-    return mapping.get ("","")
+ 
  
  
 def generate_soundex(name):
