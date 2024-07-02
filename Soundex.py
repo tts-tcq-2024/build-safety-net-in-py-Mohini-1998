@@ -12,18 +12,18 @@ def get_soundex_code(c):
 
 
 def generate_soundex(name):
-    if not name:
+ if not name:
        return ""
 
-    # Start with the first letter (capitalized)
-    soundex = name[0].upper()
-    prev_code = get_soundex_code(soundex)
-
-    for char in name[1:4]:
-        code = get_soundex_code(char)
-        #if code != '0' and code != prev_code:
-           # soundex += code
-            #prev_code = code
+  elif :     
+     # Start with the first letter (capitalized)
+     soundex = name[0].upper()
+     prev_code = get_soundex_code(soundex) 
+     for char in name[1:4]:
+         code = get_soundex_code(char)
+         #if code != '0' and code != prev_code:
+            # soundex += code
+             #prev_code = code
 
 
     # Pad with zeros if necessary
